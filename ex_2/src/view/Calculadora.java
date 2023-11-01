@@ -117,7 +117,7 @@ public class Calculadora extends JFrame {
 				
 				if (rdbtnAdi.isSelected()) {
 					
-					lblResultado.setText("Resdultado" + Result);
+					lblResultado.setText("Resultado: " + Result);
 				}
 				else if (rdbtnSub.isSelected()) {
 					
