@@ -10,6 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
+
+import model.Calculos;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -38,6 +40,8 @@ public class Posto_Combustivel extends JFrame {
 	private JTextField txtDias;
 	private JTextField txtEtanol;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
+	Calculos chama = new Calculos();
+
 
 	/**
 	 * Launch the application.
@@ -176,7 +180,8 @@ public class Posto_Combustivel extends JFrame {
 					return;
 				}
 
-				float resultado = PrecoFrascoM * FrascoM;
+
+				float resultado = chama.CalcOleoM(FrascoM, PrecoFrascoM);
 
 				lblresultFrascoM.setText(String.valueOf(resultado));
 			}
@@ -208,11 +213,12 @@ public class Posto_Combustivel extends JFrame {
 					return;
 				}
 
-				float resultado1 = PrecoFrascoL * FrascoL;
+		
+				float resultado = chama.CalcOleoL(FrascoL, PrecoFrascoL);
 
-				lblresultFrascoL.setText(String.valueOf(resultado1));
+				lblresultFrascoL.setText(String.valueOf(resultado));
 
-				float total = resultado + resultado1;
+				float total = chama.CalcOleoTotal();
 
 				lblTotalOleo.setText(String.valueOf(total));
 
