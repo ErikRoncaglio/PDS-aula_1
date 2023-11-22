@@ -6,7 +6,7 @@ public class Calculos {
 
 	public float PrecoDiesel, PrecoComum, PrecoAditiv, PrecoEtanool, Preco500ml, Preco1L, Quant500ml, Quant1L,
 			Total500ml, Total1L, TotalComb, TotalOleo;
-	public String Total;
+	
 
 	public String Diesel(float qL) {
 		String PrecoTotal = String.valueOf(PrecoDiesel * qL);
@@ -51,7 +51,6 @@ public class Calculos {
 
 	public String TotalpagarVista() {
 		String total = String.valueOf((TotalComb + TotalOleo) - ((TotalComb + TotalOleo) * 0.10));
-		Total = total;
 		return total;
 	}
 

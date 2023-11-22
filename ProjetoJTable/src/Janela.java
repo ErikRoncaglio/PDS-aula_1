@@ -73,7 +73,7 @@ public class Janela extends JFrame {
 
 				int linha = table.getSelectedRow();
 				Pessoa pessoaSelecionada = listaPessoas.get(linha);
-
+			
 			}
 		});
 		atualizarJTableModel();
@@ -144,8 +144,7 @@ public class Janela extends JFrame {
 
 				int linha = table.getSelectedRow();
 				int cpf = (int) table.getValueAt(linha, 1);
-				int i = 1;
-				
+
 				String nome = txtNome.getText();
 				String cpf1 = txtCPF.getText();
 				Integer telefone = Integer.parseInt(txtTelefone.getText());
@@ -154,8 +153,7 @@ public class Janela extends JFrame {
 				Float altura = Float.parseFloat(txtAltura.getText());
 
 				for (Pessoa pessoa : listaPessoas) {
-					i++;
-					if (i == linha) {
+					if (pessoa.getCpf() == cpf) {
 
 						pessoa.setNome(nome);
 						pessoa.setCpf(Integer.parseInt(cpf1));
