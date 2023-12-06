@@ -41,23 +41,24 @@ public class ServicoJTableModel extends AbstractTableModel {
 			return s.getFuncionário_responsavel();
 		} else if (columnIndex == 5) {
 			return s.getRestricao_idade();
-		} else if (columnIndex == 5) {
+		} else if (columnIndex == 6) {
 			return s.getCapacidade_maxima();
-		} else if (columnIndex == 5) {
+		} else if (columnIndex == 7) {
 			return s.getCusto_servico();
-		} else if (columnIndex == 5) {
+		} else if (columnIndex == 8) {
 			return s.getEquipamentos_fornecidos();
-		} else if (columnIndex == 5) {
+		} else if (columnIndex == 9) {
 			return s.getNivel_dificuldade();
-		} else if (columnIndex == 5) {
+		} else if (columnIndex == 10) {
 			return s.getDescricao();
-		} else if (columnIndex == 5) {
+		} else if (columnIndex == 11) {
 			return s.getVagas_restantes();
-		} else if (columnIndex == 5) {
+		} else if (columnIndex == 12) {
 			return s.getFeedback();
-		} else if (columnIndex == 5) {
+		} else if (columnIndex == 13) {
 			return s.getVezes_reservado();
 		}
+
 		return null;
 	}
 

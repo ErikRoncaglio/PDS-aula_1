@@ -23,6 +23,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Font;
+import javax.swing.ImageIcon;
+import java.awt.Color;
 
 public class Janela extends JFrame {
 
@@ -59,16 +61,18 @@ public class Janela extends JFrame {
 	 * Create the frame.
 	 */
 	public Janela() {
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1265, 754);
+		setBounds(100, 100, 1265, 726);
 		contentPane = new JPanel();
+		Janela estajanela = this;
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(48, 115, 1151, 427);
+		scrollPane.setBounds(45, 146, 1151, 427);
 		contentPane.add(scrollPane);
 
 		table = new JTable();
@@ -84,95 +88,89 @@ public class Janela extends JFrame {
 		atualizarJTableModel();
 		scrollPane.setViewportView(table);
 
-		JButton btnCadastrar = new JButton("Cadastrar");
-		btnCadastrar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		JLabel lblCadastrar = new JLabel("");
+		lblCadastrar.setBackground(new Color(255, 255, 255));
+		lblCadastrar
+				.setIcon(new ImageIcon("C:\\Users\\Aluno\\eclipse-workspace\\PDS-aula_1\\ProjetoJTable\\Button.png"));
+		lblCadastrar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
 
-				JanelaAdicionar abrircadastrarproduto = new JanelaAdicionar(Janela);
+				JanelaCadastrar abrircadastrar = new JanelaCadastrar(estajanela);
 
-				abrircadastrarproduto.setVisible(true);
+				abrircadastrar.setVisible(true);
 
 				atualizarJTableModel();
-				limparCampos();
 
 			}
 		});
-		btnCadastrar.setBounds(271, 584, 130, 40);
-		contentPane.add(btnCadastrar);
+		lblCadastrar.setBounds(323, 597, 137, 49);
+		contentPane.add(lblCadastrar);
 
-		JButton btnNewButton_1 = new JButton("Excluir");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		JLabel lblExcluir = new JLabel("");
+		lblExcluir
+				.setIcon(new ImageIcon("C:\\Users\\Aluno\\eclipse-workspace\\PDS-aula_1\\ProjetoJTable\\Excluir1.png"));
+		lblExcluir.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
 				int idx_linha = table.getSelectedRow();
 				lista.remove(idx_linha);
 				atualizarJTableModel();
-				limparCampos();
+
 			}
 		});
-		btnNewButton_1.setBounds(680, 584, 130, 40);
-		contentPane.add(btnNewButton_1);
+		lblExcluir.setBounds(1130, 86, 48, 49);
+		contentPane.add(lblExcluir);
 
-		btnNewButton_2 = new JButton("Alterar");
-		btnNewButton_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		JLabel lblAlterar = new JLabel("");
+		lblAlterar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
 
-				int linha = table.getSelectedRow();
-				int cpf = (int) table.getValueAt(linha, 1);
+				JanelaAlterar abrirAlterar = new JanelaAlterar(estajanela);
 
-				String nome = txtNome.getText();
-				String cpf1 = txtCPF.getText();
-				Integer telefone = Integer.parseInt(txtTelefone.getText());
-				Integer idade = Integer.parseInt(txtTelefone.getText());
-				Float peso = Float.parseFloat(txtPeso.getText());
-				Float altura = Float.parseFloat(txtAltura.getText());
+				abrirAlterar.setVisible(true);
 
-				for (Servico pessoa : listaPessoas) {
-					if (pessoa.getCpf() == cpf) {
+				atualizarJTableModel();
 
-						pessoa.setNome(nome);
-						pessoa.setCpf(Integer.parseInt(cpf1));
-						pessoa.setIdade(idade);
-						pessoa.setPeso(peso);
-						pessoa.setTelefone(telefone);
-						pessoa.setAltura(altura);
-
-						atualizarJTableModel();
-						limparCampos();
-
-					}
-
-				}
 			}
 		});
-		btnNewButton_2.setBounds(479, 584, 130, 40);
-		contentPane.add(btnNewButton_2);
+		lblAlterar
+				.setIcon(new ImageIcon("C:\\Users\\Aluno\\eclipse-workspace\\PDS-aula_1\\ProjetoJTable\\Alterar.png"));
+
+		lblAlterar.setBounds(556, 597, 137, 49);
+		contentPane.add(lblAlterar);
 
 		lblServicos = new JLabel("Serviços");
 		lblServicos.setFont(new Font("Times New Roman", Font.BOLD, 40));
 		lblServicos.setBounds(556, 37, 147, 47);
 		contentPane.add(lblServicos);
 
-		btnNewButton = new JButton("Fechar");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		JLabel lblFechar = new JLabel("");
+		lblFechar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				setVisible(false);
 			}
 		});
-		btnNewButton.setBounds(881, 584, 130, 40);
-		contentPane.add(btnNewButton);
+		lblFechar.setIcon(new ImageIcon("C:\\Users\\Aluno\\eclipse-workspace\\PDS-aula_1\\ProjetoJTable\\Fechar.png"));
+		lblCadastrar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+
+			}
+		});
+		lblFechar.setBounds(792, 597, 137, 49);
+		contentPane.add(lblFechar);
 	}
 
 	public void atualizarJTableModel() {
 		table.setModel(new ServicoJTableModel(lista));
-
 	}
 
-	public void limparCampos() {
-		txtNome.setText("");
-		txtCPF.setText("");
-		txtIdade.setText("");
-		txtAltura.setText("");
-		txtPeso.setText("");
-		txtTelefone.setText("");
-
+	public void Export(Servico exportar) {
+		lista.add(exportar);
+		atualizarJTableModel();
 	}
+
 }
