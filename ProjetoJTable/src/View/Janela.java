@@ -1,3 +1,5 @@
+package View;
+
 import java.awt.EventQueue;
 import java.util.ArrayList;
 
@@ -9,6 +11,9 @@ import javax.swing.JTextArea;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
+
+import Model.Servico;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -17,22 +22,22 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Font;
 
 public class Janela extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable table;
-	private JLabel labelNome;
-	private JTextField txtNome;
-	private JLabel lblNewLabel;
-	private JTextField txtCPF;
-	ArrayList<Pessoa> listaPessoas = new ArrayList<Pessoa>();
+	ArrayList<Servico> lista = new ArrayList<Servico>();
 	private JButton btnNewButton_2;
-	private JTextField txtIdade;
-	private JTextField txtPeso;
-	private JTextField txtAltura;
-	private JTextField txtTelefone;
+	private JLabel lblServicos;
+	private JButton btnNewButton;
+
+	public void ExportarVariaveis(Servico s) {
+		lista.add(s);
+		atualizarJTableModel();
+	}
 
 	/**
 	 * Launch the application.
@@ -55,7 +60,7 @@ public class Janela extends JFrame {
 	 */
 	public Janela() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 701, 428);
+		setBounds(100, 100, 1265, 754);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -63,7 +68,7 @@ public class Janela extends JFrame {
 		contentPane.setLayout(null);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(44, 174, 596, 189);
+		scrollPane.setBounds(48, 115, 1151, 427);
 		contentPane.add(scrollPane);
 
 		table = new JTable();
@@ -72,70 +77,39 @@ public class Janela extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 
 				int linha = table.getSelectedRow();
-				Pessoa pessoaSelecionada = listaPessoas.get(linha);
-			
+				Servico pessoaSelecionada = lista.get(linha);
+
 			}
 		});
 		atualizarJTableModel();
 		scrollPane.setViewportView(table);
 
-		labelNome = new JLabel("Nome");
-		labelNome.setBounds(44, 11, 46, 14);
-		contentPane.add(labelNome);
-
-		txtNome = new JTextField();
-		txtNome.setBounds(44, 36, 174, 20);
-		contentPane.add(txtNome);
-		txtNome.setColumns(10);
-
-		lblNewLabel = new JLabel("CPF");
-		lblNewLabel.setBounds(254, 11, 46, 14);
-		contentPane.add(lblNewLabel);
-
-		txtCPF = new JTextField();
-		txtCPF.setBounds(254, 36, 174, 20);
-		contentPane.add(txtCPF);
-		txtCPF.setColumns(10);
-
-		JButton btnNewButton = new JButton("Adicionar");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String nome = txtNome.getText();
-				String cpf = txtCPF.getText();
-				Integer telefone = Integer.parseInt(txtTelefone.getText());
-				Integer idade = Integer.parseInt(txtTelefone.getText());
-				Float peso = Float.parseFloat(txtPeso.getText());
-				Float altura = Float.parseFloat(txtAltura.getText());
 
-				Pessoa p = new Pessoa();
+				JanelaAdicionar abrircadastrarproduto = new JanelaAdicionar(Janela);
 
-				p.setNome(nome);
-				p.setCpf(Integer.parseInt(cpf));
-				p.setIdade(idade);
-				p.setPeso(peso);
-				p.setTelefone(telefone);
-				p.setAltura(altura);
-
-				listaPessoas.add(p);
+				abrircadastrarproduto.setVisible(true);
 
 				atualizarJTableModel();
 				limparCampos();
 
 			}
 		});
-		btnNewButton.setBounds(139, 131, 112, 32);
-		contentPane.add(btnNewButton);
+		btnCadastrar.setBounds(271, 584, 130, 40);
+		contentPane.add(btnCadastrar);
 
 		JButton btnNewButton_1 = new JButton("Excluir");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int idx_linha = table.getSelectedRow();
-				listaPessoas.remove(idx_linha);
+				lista.remove(idx_linha);
 				atualizarJTableModel();
 				limparCampos();
 			}
 		});
-		btnNewButton_1.setBounds(295, 131, 99, 33);
+		btnNewButton_1.setBounds(680, 584, 130, 40);
 		contentPane.add(btnNewButton_1);
 
 		btnNewButton_2 = new JButton("Alterar");
@@ -152,7 +126,7 @@ public class Janela extends JFrame {
 				Float peso = Float.parseFloat(txtPeso.getText());
 				Float altura = Float.parseFloat(txtAltura.getText());
 
-				for (Pessoa pessoa : listaPessoas) {
+				for (Servico pessoa : listaPessoas) {
 					if (pessoa.getCpf() == cpf) {
 
 						pessoa.setNome(nome);
@@ -170,48 +144,25 @@ public class Janela extends JFrame {
 				}
 			}
 		});
-		btnNewButton_2.setBounds(435, 131, 114, 32);
+		btnNewButton_2.setBounds(479, 584, 130, 40);
 		contentPane.add(btnNewButton_2);
 
-		JLabel lblIdade = new JLabel("Idade");
-		lblIdade.setBounds(462, 11, 46, 14);
-		contentPane.add(lblIdade);
+		lblServicos = new JLabel("Serviços");
+		lblServicos.setFont(new Font("Times New Roman", Font.BOLD, 40));
+		lblServicos.setBounds(556, 37, 147, 47);
+		contentPane.add(lblServicos);
 
-		txtIdade = new JTextField();
-		txtIdade.setBounds(462, 36, 178, 20);
-		contentPane.add(txtIdade);
-		txtIdade.setColumns(10);
-
-		JLabel lblPeso = new JLabel("Peso");
-		lblPeso.setBounds(44, 67, 46, 14);
-		contentPane.add(lblPeso);
-
-		JLabel lblAltura = new JLabel("Altura");
-		lblAltura.setBounds(254, 67, 46, 14);
-		contentPane.add(lblAltura);
-
-		JLabel lblTelefone = new JLabel("Telefone");
-		lblTelefone.setBounds(462, 67, 106, 14);
-		contentPane.add(lblTelefone);
-
-		txtPeso = new JTextField();
-		txtPeso.setBounds(44, 92, 174, 20);
-		contentPane.add(txtPeso);
-		txtPeso.setColumns(10);
-
-		txtAltura = new JTextField();
-		txtAltura.setBounds(254, 92, 174, 20);
-		contentPane.add(txtAltura);
-		txtAltura.setColumns(10);
-
-		txtTelefone = new JTextField();
-		txtTelefone.setBounds(462, 92, 178, 20);
-		contentPane.add(txtTelefone);
-		txtTelefone.setColumns(10);
+		btnNewButton = new JButton("Fechar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton.setBounds(881, 584, 130, 40);
+		contentPane.add(btnNewButton);
 	}
 
 	public void atualizarJTableModel() {
-		table.setModel(new PessoaJTableModel(listaPessoas));
+		table.setModel(new ServicoJTableModel(lista));
 
 	}
 
