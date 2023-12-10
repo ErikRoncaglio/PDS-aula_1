@@ -97,7 +97,7 @@ public class JanelaAlterar extends JFrame {
 		btnCadastrar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-
+/*
 				int linha = lista.getSelectedRow();
 
 				String nome = txtNome.getText();
@@ -138,7 +138,7 @@ public class JanelaAlterar extends JFrame {
 
 				}
 			}
-		});
+		});*/
 
 		btnCadastrar.setBackground(new Color(255, 255, 255));
 		btnCadastrar
@@ -358,4 +358,7 @@ public class JanelaAlterar extends JFrame {
 				.addGap(19).addComponent(btnCadastrar, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE)));
 		contentPane.setLayout(gl_contentPane);
 	}
+		});
+		}
 }
+	

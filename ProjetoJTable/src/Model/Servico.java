@@ -6,7 +6,7 @@ public class Servico {
 	private String descricao;
 	private String horario;
 	private String local;
-	private String Funcionário_responsavel;
+	private String FuncionarioResponsavel;
 	private Integer Restricao_idade;
 	private Integer capacidade_maxima;
 	private Float Custo_servico;
@@ -49,15 +49,15 @@ public class Servico {
 		this.local = local;
 	}
 
-	public String getFuncionário_responsavel() {
-		return Funcionário_responsavel;
+	public String getFuncionarioResponsavel() {
+		return FuncionarioResponsavel;
 	}
 
-	public void setFuncionário_responsavel(String funcionario_responsavel) {
-		Funcionário_responsavel = funcionario_responsavel;
+	public void setFuncionarioResponsavel(String funcionarioResponsavel) {
+		FuncionarioResponsavel = funcionarioResponsavel;
 	}
 
-	public String getRestricao_idade() {
+	public Integer getRestricao_idade() {
 		return Restricao_idade;
 	}
 
@@ -65,7 +65,7 @@ public class Servico {
 		Restricao_idade = restricao_idade2;
 	}
 
-	public String getCapacidade_maxima() {
+	public Integer getCapacidade_maxima() {
 		return capacidade_maxima;
 	}
 
@@ -73,7 +73,7 @@ public class Servico {
 		this.capacidade_maxima = capacidade_maxima2;
 	}
 
-	public String getCusto_servico() {
+	public Float getCusto_servico() {
 		return Custo_servico;
 	}
 
@@ -105,7 +105,7 @@ public class Servico {
 		this.duracao = duracao;
 	}
 
-	public String getVagas_restantes() {
+	public Integer getVagas_restantes() {
 		return vagas_restantes;
 	}
 
@@ -121,7 +121,7 @@ public class Servico {
 		Feedback = feedback;
 	}
 
-	public String getVezes_reservado() {
+	public Integer getVezes_reservado() {
 		return vezes_reservado;
 	}
 

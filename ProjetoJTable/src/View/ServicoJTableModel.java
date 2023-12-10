@@ -38,7 +38,7 @@ public class ServicoJTableModel extends AbstractTableModel {
 		} else if (columnIndex == 3) {
 			return s.getLocal();
 		} else if (columnIndex == 4) {
-			return s.getFuncionário_responsavel();
+			return s.getFuncionarioResponsavel();
 		} else if (columnIndex == 5) {
 			return s.getRestricao_idade();
 		} else if (columnIndex == 6) {
