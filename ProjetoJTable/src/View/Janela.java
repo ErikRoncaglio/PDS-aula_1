@@ -36,14 +36,6 @@ public class Janela extends JFrame {
 	private JLabel lblServicos;
 	private JButton btnNewButton;
 
-	public void ExportarVariaveis(Servico s) {
-		lista.add(s);
-		atualizarJTableModel();
-	}
-
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -65,7 +57,7 @@ public class Janela extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1265, 726);
 		contentPane = new JPanel();
-		Janela estajanela = this;
+
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
@@ -76,6 +68,7 @@ public class Janela extends JFrame {
 		contentPane.add(scrollPane);
 
 		table = new JTable();
+		Janela estajanela = this;
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -113,8 +106,15 @@ public class Janela extends JFrame {
 		lblExcluir.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				int idx_linha = table.getSelectedRow();
-				lista.remove(idx_linha);
+
+				int linha = table.getSelectedRow();
+				if (linha < 0) {
+					JOptionPane.showMessageDialog(null, "Selecione um serviço para excluir!");
+
+				} else {
+					lista.remove(linha);
+
+				}
 				atualizarJTableModel();
 
 			}
@@ -127,9 +127,10 @@ public class Janela extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
-				JanelaAlterar abrirAlterar = new JanelaAlterar(estajanela);
-
-				abrirAlterar.setVisible(true);
+			/*	JanelaAlterar abrirAlterar = new JanelaAlterar(estajanela);
+				
+				
+				abrirAlterar.setVisible(true);*/
 
 				atualizarJTableModel();
 
@@ -170,6 +171,12 @@ public class Janela extends JFrame {
 
 	public void Export(Servico exportar) {
 		lista.add(exportar);
+		atualizarJTableModel();
+	}
+
+	public void atualizar(Servico s) {
+		int linha = table.getSelectedRow();
+		lista.set(linha, s);
 		atualizarJTableModel();
 	}
 

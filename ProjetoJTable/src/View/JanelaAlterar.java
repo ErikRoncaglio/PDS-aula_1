@@ -43,7 +43,7 @@ public class JanelaAlterar extends JFrame {
 	private JTextField txtFeedback;
 	private JLabel lblCadastrarServios;
 
-	public JanelaAlterar(Janela JPrincipal) {
+	public JanelaAlterar(Servico s, Janela SalvarAlt) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 879, 606);
 		contentPane = new JPanel();

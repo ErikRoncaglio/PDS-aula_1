@@ -7,15 +7,15 @@ public class Servico {
 	private String horario;
 	private String local;
 	private String Funcionário_responsavel;
-	private String Restricao_idade;
-	private String capacidade_maxima;
-	private String Custo_servico;
+	private Integer Restricao_idade;
+	private Integer capacidade_maxima;
+	private Float Custo_servico;
 	private String Equipamentos_fornecidos;
 	private String Nivel_dificuldade;
 	private String duracao;
-	private String vagas_restantes;
+	private Integer vagas_restantes;
 	private String Feedback;
-	private String vezes_reservado;
+	private Integer vezes_reservado;
 
 	public String getNome() {
 		return nome;
@@ -61,24 +61,24 @@ public class Servico {
 		return Restricao_idade;
 	}
 
-	public void setRestricao_idade(String restricao_idade) {
-		Restricao_idade = restricao_idade;
+	public void setRestricao_idade(Integer restricao_idade2) {
+		Restricao_idade = restricao_idade2;
 	}
 
 	public String getCapacidade_maxima() {
 		return capacidade_maxima;
 	}
 
-	public void setCapacidade_maxima(String capacidade_maxima) {
-		this.capacidade_maxima = capacidade_maxima;
+	public void setCapacidade_maxima(Integer capacidade_maxima2) {
+		this.capacidade_maxima = capacidade_maxima2;
 	}
 
 	public String getCusto_servico() {
 		return Custo_servico;
 	}
 
-	public void setCusto_servico(String custo_servico) {
-		Custo_servico = custo_servico;
+	public void setCusto_servico(Float custo_servico2) {
+		Custo_servico = custo_servico2;
 	}
 
 	public String getEquipamentos_fornecidos() {
@@ -109,8 +109,8 @@ public class Servico {
 		return vagas_restantes;
 	}
 
-	public void setVagas_restantes(String vagas_restantes) {
-		this.vagas_restantes = vagas_restantes;
+	public void setVagas_restantes(Integer vagas_restantes2) {
+		this.vagas_restantes = vagas_restantes2;
 	}
 
 	public String getFeedback() {
@@ -125,8 +125,8 @@ public class Servico {
 		return vezes_reservado;
 	}
 
-	public void setVezes_reservado(String vezes_reservado) {
-		this.vezes_reservado = vezes_reservado;
+	public void setVezes_reservado(Integer vezes_reservado2) {
+		this.vezes_reservado = vezes_reservado2;
 	}
 
 }
