@@ -33,6 +33,7 @@ public class Janela extends JFrame {
 	private JTable table;
 	ArrayList<Servico> lista = new ArrayList<Servico>();
 	private JLabel lblServicos;
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -80,8 +81,8 @@ public class Janela extends JFrame {
 
 		JLabel lblCadastrar = new JLabel("");
 		lblCadastrar.setBackground(new Color(255, 255, 255));
-		lblCadastrar
-				.setIcon(new ImageIcon("C:\\Users\\Pichau\\eclipse-workspace\\PDS-aula_1\\ProjetoJTable\\Icones\\Button.png"));
+		lblCadastrar.setIcon(
+				new ImageIcon("C:\\Users\\Pichau\\eclipse-workspace\\PDS-aula_1\\ProjetoJTable\\Icones\\Button.png"));
 		lblCadastrar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -98,8 +99,8 @@ public class Janela extends JFrame {
 		contentPane.add(lblCadastrar);
 
 		JLabel lblExcluir = new JLabel("");
-		lblExcluir
-				.setIcon(new ImageIcon("C:\\Users\\Pichau\\eclipse-workspace\\PDS-aula_1\\ProjetoJTable\\Icones\\Excluir1.png"));
+		lblExcluir.setIcon(
+				new ImageIcon("C:\\Users\\Pichau\\eclipse-workspace\\PDS-aula_1\\ProjetoJTable\\Icones\\Excluir1.png"));
 		lblExcluir.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -118,25 +119,22 @@ public class Janela extends JFrame {
 		});
 		lblExcluir.setBounds(1130, 86, 48, 49);
 		contentPane.add(lblExcluir);
-
+		Janela SalvarAlt = this;
 		JLabel lblAlterar = new JLabel("");
 		lblAlterar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
-				/*
-				 * JanelaAlterar abrirAlterar = new JanelaAlterar(estajanela);
-				 * 
-				 * 
-				 * abrirAlterar.setVisible(true);
-				 */
+				int linha = table.getSelectedRow();
+				Servico x = lista.get(linha);
 
-				atualizarJTableModel();
+				JanelaAlterar janelaAlterar = new JanelaAlterar(x, SalvarAlt);
+				janelaAlterar.setVisible(true);
 
 			}
 		});
-		lblAlterar
-				.setIcon(new ImageIcon("C:\\Users\\Pichau\\eclipse-workspace\\PDS-aula_1\\ProjetoJTable\\Icones\\Alterar.png"));
+		lblAlterar.setIcon(
+				new ImageIcon("C:\\Users\\Pichau\\eclipse-workspace\\PDS-aula_1\\ProjetoJTable\\Icones\\Alterar.png"));
 
 		lblAlterar.setBounds(556, 597, 137, 49);
 		contentPane.add(lblAlterar);
@@ -153,7 +151,8 @@ public class Janela extends JFrame {
 				setVisible(false);
 			}
 		});
-		lblFechar.setIcon(new ImageIcon("C:\\Users\\Pichau\\eclipse-workspace\\PDS-aula_1\\ProjetoJTable\\Icones\\Fechar.png"));
+		lblFechar.setIcon(
+				new ImageIcon("C:\\Users\\Pichau\\eclipse-workspace\\PDS-aula_1\\ProjetoJTable\\Icones\\Fechar.png"));
 		lblCadastrar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

@@ -1,7 +1,5 @@
 package Model;
 
 public enum DificuldadeBox {
-Fácil,
-Médio,
-Difícil;
+	Fácil, Médio, Difícil;
 }

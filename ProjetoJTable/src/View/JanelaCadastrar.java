@@ -92,16 +92,16 @@ public class JanelaCadastrar extends JFrame {
 		JLabel lblNewLabel_14 = new JLabel("Feedback Médio dos Clientes:");
 		lblNewLabel_14.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		JComboBox comboBox = new JComboBox();
-		comboBox.setSelectedIndex(-1);
+
 		comboBox.setModel(new DefaultComboBoxModel(DificuldadeBox.values()));
 		JLabel lblNewLabel_11 = new JLabel("Número de Vezes que o Serviço foi Reservado:");
-		
+
 		lblNewLabel_11.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		txtFuncionario = new JTextField();
 		txtFuncionario.setForeground(new Color(64, 128, 128));
 		txtFuncionario.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		txtFuncionario.setColumns(10);
-		
+		comboBox.setSelectedIndex(-1);
 		txtFuncionario.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -127,22 +127,54 @@ public class JanelaCadastrar extends JFrame {
 				String horario = txtHorario.getText();
 				String local = txtLocal.getText();
 				String FuncionarioResponsavel = txtFuncionario.getText();
-				Integer Restricao_idade = (Integer.parseInt(txtIdade.getText()));
-				Integer capacidade_maxima = (Integer.parseInt(txtCapacidade.getText()));
-				Float Custo_servico = (Float.parseFloat(txtCusto.getText()));
 				String Equipamentos_fornecidos = txtEquipamentos.getText();
 				String duracao = txtDuracao.getText();
-				Integer vagas_restantes = (Integer.parseInt(txtVagasRestantes.getText()));
 				String Feedback = txtFeedback.getText();
-				Integer vezes_reservado = (Integer.parseInt(txtVezesReservado.getText()));
 
 				Object campo = comboBox.getSelectedItem();
 				String dificuldade;
-
 				if (campo != null) {
 					dificuldade = campo.toString();
 				} else {
 					dificuldade = "";
+				}
+
+				Integer idade = 0;
+				try {
+					idade = Integer.parseInt(txtIdade.getText());
+				} catch (NumberFormatException ex) {
+					JOptionPane.showMessageDialog(null, "Dados inválidos, utilize apenas números para idade!");
+					return;
+				}
+				Integer vagas = 0;
+				try {
+					vagas = Integer.parseInt(txtVagasRestantes.getText());
+				} catch (NumberFormatException ex) {
+					JOptionPane.showMessageDialog(null,
+							"Dados inválidos, utilize apenas números para vagas restantes!");
+					return;
+				}
+
+				Integer capacidade = 0;
+				try {
+					capacidade = Integer.parseInt(txtCapacidade.getText());
+				} catch (NumberFormatException ex) {
+					JOptionPane.showMessageDialog(null, "Dados inválidos, utilize apenas números para capacidade!");
+					return;
+				}
+				Integer reservas = 0;
+				try {
+					reservas = Integer.parseInt(txtVezesReservado.getText());
+				} catch (NumberFormatException ex) {
+					JOptionPane.showMessageDialog(null, "Dados inválidos, utilize apenas números vezes reservado!");
+					return;
+				}
+				float Custo = 0;
+				try {
+					Custo = Float.parseFloat(txtCusto.getText());
+				} catch (NumberFormatException ex) {
+					JOptionPane.showMessageDialog(null, "Dados inválidos, utilize apenas números para custo!");
+					return;
 				}
 
 				Servico s = new Servico();
@@ -152,49 +184,66 @@ public class JanelaCadastrar extends JFrame {
 				s.setHorario(horario);
 				s.setLocal(local);
 				s.setFuncionarioResponsavel(FuncionarioResponsavel);
-				s.setRestricao_idade(Restricao_idade);
-				s.setCapacidade_maxima(capacidade_maxima);
-				s.setCusto_servico(Custo_servico);
+				s.setRestricao_idade(idade);
+				s.setCapacidade_maxima(capacidade);
+				s.setCusto_servico(Custo);
 				s.setEquipamentos_fornecidos(Equipamentos_fornecidos);
 				s.setNivel_dificuldade(dificuldade);
 				s.setDuracao(duracao);
-				s.setVagas_restantes(vagas_restantes);
+				s.setVagas_restantes(vagas);
 				s.setFeedback(Feedback);
-				s.setVezes_reservado(vezes_reservado);
+				s.setVezes_reservado(reservas);
 
-				SalvarCad.Export(s);
-				dispose();
-
-			}
-
-		});
-
-		txtNome = new JTextField();
-		txtNome.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent e) {
 				if (txtNome.getText().isEmpty()) {
-					JOptionPane.showMessageDialog(null, "Preencha o espaço!");
+					JOptionPane.showMessageDialog(null, "Preencha o espaço nome!");
 				} else if (!txtNome.getText().matches("[a-zA-Zç]+")) {
-					JOptionPane.showMessageDialog(null, "Dados inválidos, utilize apenas letras!");
+					JOptionPane.showMessageDialog(null, "Dados inválidos, utilize apenas letras para nome!");
+				} else if (txtDescricao.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Preencha o espaço descrição!");
+				} else if (!txtDescricao.getText().matches("[a-zA-Zç]+")) {
+					JOptionPane.showMessageDialog(null, "Dados inválidos, utilize apenas letras para descrição!");
+				} else if (txtFuncionario.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Preencha o espaço funcionário responsável!");
+				} else if (!txtFuncionario.getText().matches("[a-zA-Zç]+")) {
+					JOptionPane.showMessageDialog(null,
+							"Dados inválidos, utilize apenas letras pra funcionario responsável!");
+				} else if (txtLocal.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Preencha o espaço local!");
+				} else if (!txtLocal.getText().matches("[a-zA-Zç]+")) {
+					JOptionPane.showMessageDialog(null, "Dados inválidos, utilize apenas letras para local!");
+				} else if (txtDuracao.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Preencha o espaço duração!");
+				} else if (!txtDuracao.getText().matches("^([01]?[0-9]|2[0-3]):[0-5][0-9]$")) {
+					JOptionPane.showMessageDialog(null, "Digite a hora corretamente em duração(no formato HH:mm)");
+					txtDuracao.requestFocus();
+				} else if (txtHorario.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Preencha o espaço horario!");
+				} else if (!txtHorario.getText().matches("^([01]?[0-9]|2[0-3]):[0-5][0-9]$")) {
+					JOptionPane.showMessageDialog(null, "Digite a hora corretamente em horario(no formato HH:mm)");
+					txtHorario.requestFocus();
+				} else if (txtEquipamentos.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Preencha o espaço equipamentos!");
+				} else if (!txtEquipamentos.getText().matches("[a-zA-Zç]+")) {
+					JOptionPane.showMessageDialog(null, "Dados inválidos, utilize apenas letras para equipamentos!");
+				} else if (txtFeedback.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Preencha o espaço feedback!");
+				} else if (!txtFeedback.getText().matches("[a-zA-Zç]+")) {
+					JOptionPane.showMessageDialog(null, "Dados inválidos, utilize apenas letras para feedback!");
+				} else {
+					SalvarCad.Export(s);
+					dispose();
 				}
 			}
 		});
+
+		txtNome = new JTextField();
+
 		txtNome.setForeground(new Color(64, 128, 128));
 		txtNome.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		txtNome.setColumns(10);
 
 		txtDescricao = new JTextField();
-		txtDescricao.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent e) {
-				if (txtDescricao.getText().isEmpty()) {
-					JOptionPane.showMessageDialog(null, "Preencha o espaço!");
-				} else if (!txtDescricao.getText().matches("[a-zA-Zç]+")) {
-					JOptionPane.showMessageDialog(null, "Dados inválidos, utilize apenas letras!");
-				}
-			}
-		});
+
 		txtDescricao.setForeground(new Color(64, 128, 128));
 		txtDescricao.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		txtDescricao.setColumns(10);
@@ -203,172 +252,63 @@ public class JanelaCadastrar extends JFrame {
 		txtFuncionario.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		txtFuncionario.setColumns(10);
 		txtFuncionario = new JTextField();
-		txtFuncionario.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent e) {
-				if (txtFuncionario.getText().isEmpty()) {
-					JOptionPane.showMessageDialog(null, "Preencha o espaço!");
-				} else if (!txtFuncionario.getText().matches("[a-zA-Zç]+")) {
-					JOptionPane.showMessageDialog(null, "Dados inválidos, utilize apenas letras!");
-				}
-			}
-		});
+
 		txtIdade = new JTextField();
-		txtIdade.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent e) {
-				Integer idade = 0;
-				try {
-					idade = Integer.parseInt(txtIdade.getText());
-				} catch (NumberFormatException ex) {
-					JOptionPane.showMessageDialog(null, "Dados inválidos, utilize apenas números!");
-					return;
-				}
-			}
-		});
+
 		txtIdade.setForeground(new Color(64, 128, 128));
 		txtIdade.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		txtIdade.setColumns(10);
 
 		txtLocal = new JTextField();
-		txtLocal.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent e) {
-				if (txtLocal.getText().isEmpty()) {
-					JOptionPane.showMessageDialog(null, "Preencha o espaço!");
-				} else if (!txtLocal.getText().matches("[a-zA-Zç]+")) {
-					JOptionPane.showMessageDialog(null, "Dados inválidos, utilize apenas letras!");
-				}
-			}
-		});
+
 		txtLocal.setForeground(new Color(64, 128, 128));
 		txtLocal.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		txtLocal.setColumns(10);
 
 		txtVagasRestantes = new JTextField();
-		txtVagasRestantes.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent e) {
-				Integer vagas = 0;
-				try {
-					vagas = Integer.parseInt(txtVagasRestantes.getText());
-				} catch (NumberFormatException ex) {
-					JOptionPane.showMessageDialog(null, "Dados inválidos, utilize apenas números!");
-					return;
-				}
-			}
-		});
+
 		txtVagasRestantes.setForeground(new Color(64, 128, 128));
 		txtVagasRestantes.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		txtVagasRestantes.setColumns(10);
 
 		txtCapacidade = new JTextField();
-		txtCapacidade.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent e) {
-				Integer vagas = 0;
-				try {
-					vagas = Integer.parseInt(txtCapacidade.getText());
-				} catch (NumberFormatException ex) {
-					JOptionPane.showMessageDialog(null, "Dados inválidos, utilize apenas números!");
-					return;
-				}
-			}
-		});
+
 		txtCapacidade.setForeground(new Color(64, 128, 128));
 		txtCapacidade.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		txtCapacidade.setColumns(10);
 
 		txtDuracao = new JTextField();
-		txtDuracao.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent e) {
-				if (txtDuracao.getText().isEmpty()) {
-					JOptionPane.showMessageDialog(null, "Preencha o espaço!");
-				} else if (!txtDuracao.getText().matches("[a-zA-Zç]+")) {
-					JOptionPane.showMessageDialog(null, "Dados inválidos, utilize apenas letras!");
-				}
-			}
-		});
+
 		txtDuracao.setForeground(new Color(64, 128, 128));
 		txtDuracao.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		txtDuracao.setColumns(10);
 
 		txtHorario = new JTextField();
-		txtHorario.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent e) {
-				if (txtHorario.getText().isEmpty()) {
-					JOptionPane.showMessageDialog(null, "Preencha o espaço!");
-				} else if (!txtHorario.getText().matches("[a-zA-Zç]+")) {
-					JOptionPane.showMessageDialog(null, "Dados inválidos, utilize apenas letras!");
-				}
-			}
-		});
+
 		txtHorario.setForeground(new Color(64, 128, 128));
 		txtHorario.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		txtHorario.setColumns(10);
 
 		txtVezesReservado = new JTextField();
-		txtVezesReservado.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent e) {
-				Integer reservas = 0;
-				try {
-					reservas = Integer.parseInt(txtVezesReservado.getText());
-				} catch (NumberFormatException ex) {
-					JOptionPane.showMessageDialog(null, "Dados inválidos, utilize apenas números!");
-					return;
-				}
-			}
-		});
+
 		txtVezesReservado.setForeground(new Color(64, 128, 128));
 		txtVezesReservado.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		txtVezesReservado.setColumns(10);
 
 		txtCusto = new JTextField();
-		txtCusto.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent e) {
-				float Custo = 0;
-				try {
-					Custo = Float.parseFloat(txtCusto.getText());
-				} catch (NumberFormatException ex) {
-					JOptionPane.showMessageDialog(null, "Dados inválidos, utilize apenas números!");
-					return;
-				}
-			}
-		});
+
 		txtCusto.setForeground(new Color(64, 128, 128));
 		txtCusto.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		txtCusto.setColumns(10);
 
 		txtEquipamentos = new JTextField();
-		txtEquipamentos.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent e) {
-				if (txtEquipamentos.getText().isEmpty()) {
-					JOptionPane.showMessageDialog(null, "Preencha o espaço!");
-				} else if (!txtEquipamentos.getText().matches("[a-zA-Zç]+")) {
-					JOptionPane.showMessageDialog(null, "Dados inválidos, utilize apenas letras!");
-				}
-			}
-		});
+
 		txtEquipamentos.setForeground(new Color(64, 128, 128));
 		txtEquipamentos.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		txtEquipamentos.setColumns(10);
 
 		txtFeedback = new JTextField();
-		txtFeedback.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent e) {
-				if (txtFeedback.getText().isEmpty()) {
-					JOptionPane.showMessageDialog(null, "Preencha o espaço!");
-				} else if (!txtFeedback.getText().matches("[a-zA-Zç]+")) {
-					JOptionPane.showMessageDialog(null, "Dados inválidos, utilize apenas letras!");
-				}
-			}
-		});
+
 		txtFeedback.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		txtFeedback.setForeground(new Color(64, 128, 128));
 		txtFeedback.setColumns(10);
