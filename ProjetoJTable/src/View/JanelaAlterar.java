@@ -1,6 +1,5 @@
 package View;
 
-import java.awt.EventQueue;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -12,13 +11,10 @@ import Model.Servico;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
-import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
-import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.ImageIcon;
@@ -36,7 +32,6 @@ public class JanelaAlterar extends JFrame {
 	ArrayList<Servico> lista = new ArrayList<Servico>();
 	private JTextField txtNome;
 	private JTextField txtDescricao;
-	private JTextField txtFuncionario;
 	private JTextField txtFuncionario_1;
 	private JTextField txtIdade;
 	private JTextField txtLocal;
@@ -103,17 +98,17 @@ public class JanelaAlterar extends JFrame {
 		JLabel lblNewLabel_11 = new JLabel("Número de Vezes que o Serviço foi Reservado:");
 
 		lblNewLabel_11.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-		txtFuncionario = new JTextField();
-		txtFuncionario.setForeground(new Color(64, 128, 128));
-		txtFuncionario.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-		txtFuncionario.setColumns(10);
+		txtFuncionario_1 = new JTextField();
+		txtFuncionario_1.setForeground(new Color(64, 128, 128));
+		txtFuncionario_1.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+		txtFuncionario_1.setColumns(10);
 		comboBox.setSelectedIndex(-1);
-		txtFuncionario.addFocusListener(new FocusAdapter() {
+		txtFuncionario_1.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
-				if (txtFuncionario.getText().isEmpty()) {
+				if (txtFuncionario_1.getText().isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Preencha o espaço!");
-				} else if (!txtFuncionario.getText().matches("[a-zA-Zç]+")) {
+				} else if (!txtFuncionario_1.getText().matches("[a-zA-Zç]+")) {
 					JOptionPane.showMessageDialog(null, "Dados inválidos, utilize apenas letras!");
 				}
 			}
@@ -122,7 +117,7 @@ public class JanelaAlterar extends JFrame {
 
 		btnAlterar.setBackground(new Color(255, 255, 255));
 		btnAlterar.setIcon(
-				new ImageIcon("C:\\Users\\Pichau\\eclipse-workspace\\PDS-aula_1\\ProjetoJTable\\Icones\\Salvar.png"));
+				new ImageIcon(JanelaAlterar.class.getResource("/Icones/Salvar.png")));
 		btnAlterar.setFont(new Font("Times New Roman", Font.BOLD, 18));
 		btnAlterar.addMouseListener(new MouseAdapter() {
 			@Override
@@ -176,20 +171,20 @@ public class JanelaAlterar extends JFrame {
 
 				if (txtNome.getText().isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Preencha o espaço nome!");
-				} else if (!txtNome.getText().matches("[a-zA-Zç]+")) {
+				} else if (!txtNome.getText().matches("[a -z A-Zç]+")) {
 					JOptionPane.showMessageDialog(null, "Dados inválidos, utilize apenas letras para nome!");
 				} else if (txtDescricao.getText().isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Preencha o espaço descrição!");
-				} else if (!txtDescricao.getText().matches("[a-zA-Zç]+")) {
+				} else if (!txtDescricao.getText().matches("[a -z A-Zç]+")) {
 					JOptionPane.showMessageDialog(null, "Dados inválidos, utilize apenas letras para descrição!");
-				} else if (txtFuncionario.getText().isEmpty()) {
+				} else if (txtFuncionario_1.getText().isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Preencha o espaço funcionário responsável!");
-				} else if (!txtFuncionario.getText().matches("[a-zA-Zç]+")) {
+				} else if (!txtFuncionario_1.getText().matches("[a -z A-Zç]+")) {
 					JOptionPane.showMessageDialog(null,
 							"Dados inválidos, utilize apenas letras pra funcionario responsável!");
 				} else if (txtLocal.getText().isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Preencha o espaço local!");
-				} else if (!txtLocal.getText().matches("[a-zA-Zç]+")) {
+				} else if (!txtLocal.getText().matches("[a -z A-Zç]+")) {
 					JOptionPane.showMessageDialog(null, "Dados inválidos, utilize apenas letras para local!");
 				} else if (txtDuracao.getText().isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Preencha o espaço duração!");
@@ -203,17 +198,17 @@ public class JanelaAlterar extends JFrame {
 					txtHorario.requestFocus();
 				} else if (txtEquipamentos.getText().isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Preencha o espaço equipamentos!");
-				} else if (!txtEquipamentos.getText().matches("[a-zA-Zç]+")) {
+				} else if (!txtEquipamentos.getText().matches("[a -z A-Zç]+")) {
 					JOptionPane.showMessageDialog(null, "Dados inválidos, utilize apenas letras para equipamentos!");
 				} else if (txtFeedback.getText().isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Preencha o espaço feedback!");
-				} else if (!txtFeedback.getText().matches("[a-zA-Zç]+")) {
+				} else if (!txtFeedback.getText().matches("[a -z A-Zç]+")) {
 					JOptionPane.showMessageDialog(null, "Dados inválidos, utilize apenas letras para feedback!");
 				} else {
 
 					SalvarAlt.atualizar(s);
-					JOptionPane.showInternalMessageDialog(btnAlterar, "Serviço Alterado!");
 					dispose();
+					JOptionPane.showMessageDialog(btnAlterar, "Serviço Alterado!");
 				}
 			}
 		});
@@ -230,9 +225,9 @@ public class JanelaAlterar extends JFrame {
 		txtDescricao.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		txtDescricao.setColumns(10);
 
-		txtFuncionario.setForeground(new Color(64, 128, 128));
-		txtFuncionario.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-		txtFuncionario.setColumns(10);
+		txtFuncionario_1.setForeground(new Color(64, 128, 128));
+		txtFuncionario_1.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+		txtFuncionario_1.setColumns(10);
 		txtFuncionario_1 = new JTextField();
 
 		txtIdade = new JTextField();
@@ -444,7 +439,7 @@ public class JanelaAlterar extends JFrame {
 		String local = s.getLocal();
 		txtLocal.setText(local);
 		String FuncionarioResponsavel = s.getFuncionarioResponsavel();
-		txtFuncionario.setText(FuncionarioResponsavel);
+		txtFuncionario_1.setText(FuncionarioResponsavel);
 		Integer Restricao_idade = s.getRestricao_idade();
 		txtIdade.setText(String.valueOf(Restricao_idade));
 		Integer capacidade_maxima = s.getCapacidade_maxima();
@@ -462,10 +457,5 @@ public class JanelaAlterar extends JFrame {
 		Integer vezes_reservado = s.getVezes_reservado();
 		txtVezesReservado.setText(String.valueOf(vezes_reservado));
 
-		Object campo = comboBox.getSelectedItem();
-		if (campo != null) {
-			String campoSelecionado = campo.toString();
-
-		}
 	}
 }

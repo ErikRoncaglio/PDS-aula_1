@@ -82,7 +82,7 @@ public class Janela extends JFrame {
 		JLabel lblCadastrar = new JLabel("");
 		lblCadastrar.setBackground(new Color(255, 255, 255));
 		lblCadastrar.setIcon(
-				new ImageIcon("C:\\Users\\Pichau\\eclipse-workspace\\PDS-aula_1\\ProjetoJTable\\Icones\\Button.png"));
+				new ImageIcon(Janela.class.getResource("/Icones/Button.png")));
 		lblCadastrar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -100,7 +100,7 @@ public class Janela extends JFrame {
 
 		JLabel lblExcluir = new JLabel("");
 		lblExcluir.setIcon(
-				new ImageIcon("C:\\Users\\Pichau\\eclipse-workspace\\PDS-aula_1\\ProjetoJTable\\Icones\\Excluir1.png"));
+				new ImageIcon(Janela.class.getResource("/Icones/Excluir1.png")));
 		lblExcluir.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -127,14 +127,17 @@ public class Janela extends JFrame {
 
 				int linha = table.getSelectedRow();
 				Servico x = lista.get(linha);
+				if (linha < 0) {
+					JOptionPane.showMessageDialog(null, "Selecione um serviço para excluir!");
+				} else {
+					JanelaAlterar janelaAlterar = new JanelaAlterar(x, SalvarAlt);
+					janelaAlterar.setVisible(true);
 
-				JanelaAlterar janelaAlterar = new JanelaAlterar(x, SalvarAlt);
-				janelaAlterar.setVisible(true);
-
+				}
 			}
 		});
 		lblAlterar.setIcon(
-				new ImageIcon("C:\\Users\\Pichau\\eclipse-workspace\\PDS-aula_1\\ProjetoJTable\\Icones\\Alterar.png"));
+				new ImageIcon(Janela.class.getResource("/Icones/Alterar.png")));
 
 		lblAlterar.setBounds(556, 597, 137, 49);
 		contentPane.add(lblAlterar);
@@ -152,7 +155,7 @@ public class Janela extends JFrame {
 			}
 		});
 		lblFechar.setIcon(
-				new ImageIcon("C:\\Users\\Pichau\\eclipse-workspace\\PDS-aula_1\\ProjetoJTable\\Icones\\Fechar.png"));
+				new ImageIcon(Janela.class.getResource("/Icones/Fechar.png")));
 		lblCadastrar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

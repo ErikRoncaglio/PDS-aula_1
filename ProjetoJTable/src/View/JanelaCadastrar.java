@@ -116,7 +116,7 @@ public class JanelaCadastrar extends JFrame {
 
 		btnCadastrar.setBackground(new Color(255, 255, 255));
 		btnCadastrar.setIcon(
-				new ImageIcon("C:\\Users\\Pichau\\eclipse-workspace\\PDS-aula_1\\ProjetoJTable\\Icones\\Salvar.png"));
+				new ImageIcon(JanelaCadastrar.class.getResource("/Icones/Salvar.png")));
 		btnCadastrar.setFont(new Font("Times New Roman", Font.BOLD, 18));
 		btnCadastrar.addMouseListener(new MouseAdapter() {
 			@Override
@@ -196,20 +196,20 @@ public class JanelaCadastrar extends JFrame {
 
 				if (txtNome.getText().isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Preencha o espaço nome!");
-				} else if (!txtNome.getText().matches("[a-zA-Zç]+")) {
+				} else if (!txtNome.getText().matches("[a -z A-Zç]+")) {
 					JOptionPane.showMessageDialog(null, "Dados inválidos, utilize apenas letras para nome!");
 				} else if (txtDescricao.getText().isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Preencha o espaço descrição!");
-				} else if (!txtDescricao.getText().matches("[a-zA-Zç]+")) {
+				} else if (!txtDescricao.getText().matches("[a -z A-Zç]+")) {
 					JOptionPane.showMessageDialog(null, "Dados inválidos, utilize apenas letras para descrição!");
 				} else if (txtFuncionario.getText().isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Preencha o espaço funcionário responsável!");
-				} else if (!txtFuncionario.getText().matches("[a-zA-Zç]+")) {
+				} else if (!txtFuncionario.getText().matches("[a -z A-Zç]+")) {
 					JOptionPane.showMessageDialog(null,
 							"Dados inválidos, utilize apenas letras pra funcionario responsável!");
 				} else if (txtLocal.getText().isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Preencha o espaço local!");
-				} else if (!txtLocal.getText().matches("[a-zA-Zç]+")) {
+				} else if (!txtLocal.getText().matches("[a -z A-Zç]+")) {
 					JOptionPane.showMessageDialog(null, "Dados inválidos, utilize apenas letras para local!");
 				} else if (txtDuracao.getText().isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Preencha o espaço duração!");
@@ -223,15 +223,16 @@ public class JanelaCadastrar extends JFrame {
 					txtHorario.requestFocus();
 				} else if (txtEquipamentos.getText().isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Preencha o espaço equipamentos!");
-				} else if (!txtEquipamentos.getText().matches("[a-zA-Zç]+")) {
+				} else if (!txtEquipamentos.getText().matches("[a -z A-Zç]+")) {
 					JOptionPane.showMessageDialog(null, "Dados inválidos, utilize apenas letras para equipamentos!");
 				} else if (txtFeedback.getText().isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Preencha o espaço feedback!");
-				} else if (!txtFeedback.getText().matches("[a-zA-Zç]+")) {
+				} else if (!txtFeedback.getText().matches("[a -z A-Zç]+")) {
 					JOptionPane.showMessageDialog(null, "Dados inválidos, utilize apenas letras para feedback!");
 				} else {
 					SalvarCad.Export(s);
 					dispose();
+					JOptionPane.showMessageDialog(btnCadastrar, "Serviço Cadastrado!");
 				}
 			}
 		});
@@ -251,7 +252,6 @@ public class JanelaCadastrar extends JFrame {
 		txtFuncionario.setForeground(new Color(64, 128, 128));
 		txtFuncionario.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		txtFuncionario.setColumns(10);
-		txtFuncionario = new JTextField();
 
 		txtIdade = new JTextField();
 
@@ -316,142 +316,185 @@ public class JanelaCadastrar extends JFrame {
 		lblCadastrarServios = new JLabel("Cadastrar Serviços");
 		lblCadastrarServios.setFont(new Font("Times New Roman", Font.BOLD, 32));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup().addGap(299).addComponent(lblCadastrarServios,
-						GroupLayout.PREFERRED_SIZE, 269, GroupLayout.PREFERRED_SIZE))
-				.addGroup(gl_contentPane.createSequentialGroup().addGap(64).addGroup(gl_contentPane
-						.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup().addGap(110)
-								.addComponent(txtNome, GroupLayout.PREFERRED_SIZE, 274, GroupLayout.PREFERRED_SIZE)
-								.addGap(8)
-								.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-										.addGroup(gl_contentPane.createSequentialGroup().addGap(144).addComponent(
-												txtFuncionario, GroupLayout.PREFERRED_SIZE, 225,
-												GroupLayout.PREFERRED_SIZE))
-										.addComponent(lblNewLabel_3, GroupLayout.PREFERRED_SIZE, 260,
-												GroupLayout.PREFERRED_SIZE)))
-						.addComponent(lblNome, GroupLayout.PREFERRED_SIZE, 652, GroupLayout.PREFERRED_SIZE)))
-				.addGroup(gl_contentPane.createSequentialGroup().addGap(64).addGroup(gl_contentPane
-						.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup().addGap(498).addComponent(lblNewLabel_12,
-								GroupLayout.PREFERRED_SIZE, 154, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_contentPane.createSequentialGroup().addGap(622).addComponent(txtDuracao,
-								GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_contentPane.createSequentialGroup().addGap(622).addComponent(txtIdade,
-								GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_contentPane.createSequentialGroup().addGap(498).addComponent(lblNewLabel_4,
-								GroupLayout.PREFERRED_SIZE, 154, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_contentPane.createSequentialGroup().addGap(110).addComponent(txtDescricao,
-								GroupLayout.PREFERRED_SIZE, 375, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_contentPane.createSequentialGroup().addGap(498).addComponent(lblNewLabel_1,
-								GroupLayout.PREFERRED_SIZE, 154, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_contentPane.createSequentialGroup().addGap(622).addComponent(txtHorario,
-								GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE))
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(299)
+					.addComponent(lblCadastrarServios, GroupLayout.PREFERRED_SIZE, 269, GroupLayout.PREFERRED_SIZE))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(64)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(110)
+							.addComponent(txtNome, GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
+							.addGap(8)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addGap(144)
+									.addComponent(txtFuncionario, GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE))
+								.addComponent(lblNewLabel_3, GroupLayout.PREFERRED_SIZE, 260, GroupLayout.PREFERRED_SIZE)))
+						.addComponent(lblNome, GroupLayout.PREFERRED_SIZE, 652, GroupLayout.PREFERRED_SIZE))
+					.addGap(28))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(64)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(498)
+							.addComponent(lblNewLabel_12, GroupLayout.PREFERRED_SIZE, 154, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(622)
+							.addComponent(txtDuracao, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(622)
+							.addComponent(txtIdade, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(498)
+							.addComponent(lblNewLabel_4, GroupLayout.PREFERRED_SIZE, 154, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(110)
+							.addComponent(txtDescricao, GroupLayout.PREFERRED_SIZE, 375, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(498)
+							.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 154, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(622)
+							.addComponent(txtHorario, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE))
 						.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 652, GroupLayout.PREFERRED_SIZE)))
-				.addGroup(gl_contentPane.createSequentialGroup().addGap(64)
-						.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_contentPane.createSequentialGroup().addGap(110).addComponent(txtLocal,
-										GroupLayout.PREFERRED_SIZE, 651, GroupLayout.PREFERRED_SIZE))
-								.addComponent(lblNewel_2, GroupLayout.PREFERRED_SIZE, 652, GroupLayout.PREFERRED_SIZE)))
-				.addGroup(gl_contentPane.createSequentialGroup().addGap(64).addGroup(gl_contentPane
-						.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup().addGap(110)
-								.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 137, GroupLayout.PREFERRED_SIZE)
-								.addGap(16)
-								.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-										.addGroup(gl_contentPane.createSequentialGroup().addGap(140).addComponent(
-												txtVagasRestantes, GroupLayout.PREFERRED_SIZE, 123,
-												GroupLayout.PREFERRED_SIZE))
-										.addGroup(gl_contentPane.createSequentialGroup().addGap(275).addComponent(
-												lblNewLabel_5, GroupLayout.PREFERRED_SIZE, 114,
-												GroupLayout.PREFERRED_SIZE))
-										.addGroup(gl_contentPane.createSequentialGroup().addGap(399).addComponent(
-												txtCapacidade, GroupLayout.PREFERRED_SIZE, 99,
-												GroupLayout.PREFERRED_SIZE))
-										.addComponent(lblNewLabel_13, GroupLayout.PREFERRED_SIZE, 417,
-												GroupLayout.PREFERRED_SIZE)))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(64)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(110)
+							.addComponent(txtLocal, GroupLayout.PREFERRED_SIZE, 651, GroupLayout.PREFERRED_SIZE))
+						.addComponent(lblNewel_2, GroupLayout.PREFERRED_SIZE, 652, GroupLayout.PREFERRED_SIZE)))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(64)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(110)
+							.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 137, GroupLayout.PREFERRED_SIZE)
+							.addGap(16)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addGap(140)
+									.addComponent(txtVagasRestantes, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE))
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addGap(275)
+									.addComponent(lblNewLabel_5, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE))
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addGap(399)
+									.addComponent(txtCapacidade, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE))
+								.addComponent(lblNewLabel_13, GroupLayout.PREFERRED_SIZE, 417, GroupLayout.PREFERRED_SIZE)))
 						.addComponent(lblNewLabel_8, GroupLayout.PREFERRED_SIZE, 652, GroupLayout.PREFERRED_SIZE)))
-				.addGroup(gl_contentPane.createSequentialGroup().addGap(64).addGroup(gl_contentPane
-						.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup().addGap(436).addComponent(lblNewLabel_6,
-								GroupLayout.PREFERRED_SIZE, 216, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_contentPane.createSequentialGroup().addGap(246).addComponent(txtVezesReservado,
-								GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_contentPane.createSequentialGroup().addGap(550).addComponent(txtCusto,
-								GroupLayout.PREFERRED_SIZE, 211, GroupLayout.PREFERRED_SIZE))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(64)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(436)
+							.addComponent(lblNewLabel_6, GroupLayout.PREFERRED_SIZE, 216, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(246)
+							.addComponent(txtVezesReservado, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(550)
+							.addComponent(txtCusto, GroupLayout.PREFERRED_SIZE, 211, GroupLayout.PREFERRED_SIZE))
 						.addComponent(lblNewLabel_11, GroupLayout.PREFERRED_SIZE, 652, GroupLayout.PREFERRED_SIZE)))
-				.addGroup(gl_contentPane.createSequentialGroup().addGap(64).addGroup(gl_contentPane
-						.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup().addGap(549).addComponent(txtEquipamentos,
-								GroupLayout.PREFERRED_SIZE, 212, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_contentPane.createSequentialGroup().addGap(156).addComponent(txtFeedback,
-								GroupLayout.PREFERRED_SIZE, 228, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_contentPane.createSequentialGroup().addGap(402).addComponent(lblNewLabel_7,
-								GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(64)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(549)
+							.addComponent(txtEquipamentos, GroupLayout.PREFERRED_SIZE, 212, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(156)
+							.addComponent(txtFeedback, GroupLayout.PREFERRED_SIZE, 228, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(402)
+							.addComponent(lblNewLabel_7, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE))
 						.addComponent(lblNewLabel_14, GroupLayout.PREFERRED_SIZE, 652, GroupLayout.PREFERRED_SIZE)))
-				.addGroup(gl_contentPane.createSequentialGroup().addGap(351).addComponent(btnCadastrar,
-						GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE)));
-		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane
-				.createSequentialGroup().addGap(6)
-				.addComponent(lblCadastrarServios, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
-				.addGap(30)
-				.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(351)
+					.addComponent(btnCadastrar, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE))
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(6)
+					.addComponent(lblCadastrarServios, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
+					.addGap(30)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(txtNome, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
 						.addComponent(txtFuncionario, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-						.addGroup(gl_contentPane.createSequentialGroup().addGap(3).addComponent(lblNewLabel_3,
-								GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_contentPane.createSequentialGroup().addGap(3)
-								.addComponent(lblNome, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)))
-				.addGap(19)
-				.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup().addGap(51).addComponent(lblNewLabel_12,
-								GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_contentPane.createSequentialGroup().addGap(48).addComponent(txtDuracao,
-								GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(3)
+							.addComponent(lblNewLabel_3, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(3)
+							.addComponent(lblNome, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)))
+					.addGap(19)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(51)
+							.addComponent(lblNewLabel_12, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(48)
+							.addComponent(txtDuracao, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
 						.addComponent(txtIdade, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-						.addGroup(gl_contentPane.createSequentialGroup().addGap(3).addComponent(lblNewLabel_4,
-								GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(3)
+							.addComponent(lblNewLabel_4, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE))
 						.addComponent(txtDescricao, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
-						.addGroup(gl_contentPane.createSequentialGroup().addGap(103).addComponent(lblNewLabel_1,
-								GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_contentPane.createSequentialGroup().addGap(100).addComponent(txtHorario,
-								GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_contentPane.createSequentialGroup().addGap(3)
-								.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)))
-				.addGap(16)
-				.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(103)
+							.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(100)
+							.addComponent(txtHorario, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(3)
+							.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)))
+					.addGap(16)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(txtLocal, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-						.addGroup(gl_contentPane.createSequentialGroup().addGap(3)
-								.addComponent(lblNewel_2, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)))
-				.addGap(25)
-				.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(3)
+							.addComponent(lblNewel_2, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)))
+					.addGap(25)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
-						.addGroup(gl_contentPane.createSequentialGroup().addGap(1).addGroup(gl_contentPane
-								.createParallelGroup(Alignment.LEADING)
-								.addComponent(txtVagasRestantes, GroupLayout.PREFERRED_SIZE, 20,
-										GroupLayout.PREFERRED_SIZE)
-								.addGroup(gl_contentPane.createSequentialGroup().addGap(3).addComponent(lblNewLabel_5,
-										GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(1)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addComponent(txtVagasRestantes, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addGap(3)
+									.addComponent(lblNewLabel_5, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE))
 								.addComponent(txtCapacidade, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-								.addGroup(gl_contentPane.createSequentialGroup().addGap(3).addComponent(lblNewLabel_13,
-										GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE))))
-						.addGroup(gl_contentPane.createSequentialGroup().addGap(4).addComponent(lblNewLabel_8,
-								GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)))
-				.addGap(24)
-				.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup().addGap(3).addComponent(lblNewLabel_6,
-								GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE))
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addGap(3)
+									.addComponent(lblNewLabel_13, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE))))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(4)
+							.addComponent(lblNewLabel_8, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)))
+					.addGap(24)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(3)
+							.addComponent(lblNewLabel_6, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE))
 						.addComponent(txtVezesReservado, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
 						.addComponent(txtCusto, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-						.addGroup(gl_contentPane.createSequentialGroup().addGap(3).addComponent(lblNewLabel_11,
-								GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)))
-				.addGap(19)
-				.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(3)
+							.addComponent(lblNewLabel_11, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)))
+					.addGap(19)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(txtEquipamentos, GroupLayout.PREFERRED_SIZE, 94, GroupLayout.PREFERRED_SIZE)
 						.addComponent(txtFeedback, GroupLayout.PREFERRED_SIZE, 94, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblNewLabel_7, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblNewLabel_14, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE))
-				.addGap(19).addComponent(btnCadastrar, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE)));
+					.addGap(19)
+					.addComponent(btnCadastrar, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE))
+		);
 		contentPane.setLayout(gl_contentPane);
 	}
 }
